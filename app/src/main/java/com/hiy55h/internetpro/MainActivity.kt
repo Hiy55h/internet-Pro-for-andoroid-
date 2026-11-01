@@ -210,7 +210,7 @@ class MainActivity : Activity() {
         val scripts = getSharedPreferences("extensions", MODE_PRIVATE)
             .getStringSet("scripts", emptySet())?.toList().orEmpty()
         scripts.forEach { script ->
-            web.evaluateJavascript("(function(){try{\\n$script\\n}catch(e){console.error(e)}})();", null)
+            web.evaluateJavascript("(function(){try{\n$script\n}catch(e){console.error(e)}})();", null)
         }
         // Catch image right-clicks on pages. The native bridge exposes only a download prompt.
         val js = """
