@@ -11,6 +11,7 @@ android {
         applicationId 'com.hiy55h.internetpro'
         minSdk 23
         targetSdk 35
+        ndk { abiFilters 'armeabi-v7a' }
         versionCode 1
         versionName '1.0.0'
     }
