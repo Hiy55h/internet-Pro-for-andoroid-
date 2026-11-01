@@ -36,6 +36,7 @@ class MainActivity : Activity() {
     private var activeId = 0
     private var nextId = 1
     private var desktopMode = false
+    private var mobileUa: String? = null
     private lateinit var root: LinearLayout
     private lateinit var tabStrip: LinearLayout
     private lateinit var address: EditText
@@ -157,6 +158,7 @@ class MainActivity : Activity() {
 
     private fun addTab(url: String) {
         val web = WebView(this)
+        mobileUa = mobileUa ?: web.settings.userAgentString
         web.settings.javaScriptEnabled = true
         web.settings.domStorageEnabled = true
         web.settings.loadsImagesAutomatically = true
@@ -324,7 +326,7 @@ class MainActivity : Activity() {
         desktopMode = !desktopMode
         getSharedPreferences("browser", MODE_PRIVATE).edit().putBoolean("desktop", desktopMode).apply()
         tabs.forEach { tab ->
-            tab.web.settings.userAgentString = if (desktopMode) desktopUa else WebView(this).settings.userAgentString
+            tab.web.settings.userAgentString = if (desktopMode) desktopUa else (mobileUa ?: tab.web.settings.userAgentString)
             tab.web.settings.loadWithOverviewMode = !desktopMode
             tab.web.reload()
         }
