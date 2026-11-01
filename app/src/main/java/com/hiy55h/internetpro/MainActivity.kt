@@ -94,7 +94,7 @@ class MainActivity : Activity() {
             setBackgroundColor(Color.WHITE)
         }
         address = EditText(this).apply {
-            singleLine = true
+            isSingleLine = true
             textSize = 15f
             setTextColor(ink)
             setHintTextColor(Color.GRAY)
