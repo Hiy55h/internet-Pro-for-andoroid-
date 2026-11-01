@@ -25,9 +25,9 @@ import android.widget.LinearLayout
 import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.ComponentActivity
+import android.app.Activity
 
-class MainActivity : ComponentActivity() {
+class MainActivity : Activity() {
     private data class BrowserTab(val id: Int, var title: String, var url: String, val web: WebView)
     private val tabs = mutableListOf<BrowserTab>()
     private var activeId = 0
